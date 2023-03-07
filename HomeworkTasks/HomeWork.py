@@ -4,8 +4,6 @@ timestamp = time.time()
 
 month_days = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31]
 
-months = ['January', 'February', 'March', 'April', 'May', 'June',
-          'July', 'August', 'September', 'October', 'November', 'December']
 
 year = 1970
 day = 0
