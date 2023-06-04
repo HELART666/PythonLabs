@@ -1,0 +1,74 @@
+{% extends 'main.html' %}
+
+{% block content %}
+
+    <br>
+
+    <div class="row">
+        <div class="col-md">
+            <div class="card card-body">
+                <h5>Заказчик:</h5>
+                <hr>
+                {% if user.is_authenticated and user.is_superuser %}
+                    <a class="btn btn-outline-info  btn-sm btn-block" href="">Обновить информацию о заказчике</a>
+                    <a class="btn btn-outline-danger  btn-sm btn-block" href="">Удалить заказчика</a>
+                {% endif %}
+            </div>
+        </div>
+
+        <div class="col-md">
+            <div class="card card-body">
+                <h5>Контакты</h5>
+                <hr>
+                <p>Email: {{ customer.email }}</p>
+                <p>Phone: {{ customer.phone }}</p>
+            </div>
+        </div>
+
+        <div class="col-md">
+            <div class="card card-body">
+                <h5>Общее кол-во заказов:</h5>
+                <hr>
+                <h1 style="text-align: center;padding: 10px">{{ order_count }}</h1>
+            </div>
+        </div>
+    </div>
+
+
+    <br>
+    <br>
+
+    <div class="row">
+        <div class="col-md">
+            <div class="card card-body">
+                <table class="table table-sm">
+                    <tr>
+                        <th>Продукт</th>
+                        <th>Категории</th>
+                        <th>Дата заказа</th>
+                        <th>Статус заказа</th>
+                        <th>Обновить заказ</th>
+                        <th>Удаление заказа</th>
+                    </tr>
+
+                    {% for order in orders %}
+
+                        <tr>
+                            <td>{{ order.product }}</td>
+                            <td>{{ order.product.category }}</td>
+                            <td>{{ order.date_created }}</td>
+                            <td>{{ order.status }}</td>
+                            <td><a class="btn btn-sm btn-info" href="{% url 'update_order' order.id %}">Обновить</a>
+                            </td>
+
+                            <td><a class="btn btn-sm btn-danger" href="{% url 'delete_order' order.id %}">Удалить</a>
+                            </td>
+                        </tr>
+                    {% endfor %}
+
+                </table>
+            </div>
+        </div>
+    </div>
+
+{% endblock %}
